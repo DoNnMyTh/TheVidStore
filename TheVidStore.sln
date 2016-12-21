@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheVidStore", "TheVidStore\TheVidStore.csproj", "{011BF191-1A27-470F-943E-5538B6A0DF7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheVidStore.Tests", "TheVidStore.Tests\TheVidStore.Tests.csproj", "{A41C7D54-8F1D-410D-BF1D-EE0F82BD0815}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{011BF191-1A27-470F-943E-5538B6A0DF7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{011BF191-1A27-470F-943E-5538B6A0DF7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{011BF191-1A27-470F-943E-5538B6A0DF7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{011BF191-1A27-470F-943E-5538B6A0DF7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A41C7D54-8F1D-410D-BF1D-EE0F82BD0815}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A41C7D54-8F1D-410D-BF1D-EE0F82BD0815}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A41C7D54-8F1D-410D-BF1D-EE0F82BD0815}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A41C7D54-8F1D-410D-BF1D-EE0F82BD0815}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
