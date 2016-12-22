@@ -6,15 +6,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h3>Movies</h3>
+<br />
 
-
-@foreach (var Movies in Model.Movie)
-{
-    <li>
-        @Movies.Name
-    </li>
+@{
+    var className = Model.Movie.Count > 5 ? "popular" : null;
 }
 
-
-
-
+<h4 class="@className">
+    @foreach (var Movies in Model.Movie)
+    {
+        <li>
+            @Movies.Name
+        </li>
+    }
+</h4>
