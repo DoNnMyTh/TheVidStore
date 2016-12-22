@@ -1,0 +1,13 @@
+﻿
+@model TheVidStore.ViewModels.ByIdViewModel
+@{
+    ViewBag.Title = "SHHH.....";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var customer in Model.customer)
+{
+    <li>
+        @customer.Name
+    </li>
+}

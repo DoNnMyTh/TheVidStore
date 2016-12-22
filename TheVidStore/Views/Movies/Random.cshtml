@@ -1,0 +1,20 @@
+﻿@model TheVidStore.ViewModels.RandomMovieViewModel
+
+
+@{
+    ViewBag.Title = "Random Movie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@foreach (var Movies in Model.Movie)
+{
+    <li>
+        @Movies.Name
+    </li>
+}
+
+
+
+
