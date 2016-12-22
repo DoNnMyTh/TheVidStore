@@ -20,6 +20,8 @@ namespace TheVidStore.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Customer> Customres { get; set; }
+        public DbSet<Movie> Movies { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
