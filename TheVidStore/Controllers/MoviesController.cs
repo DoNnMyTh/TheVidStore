@@ -10,6 +10,34 @@ namespace TheVidStore.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+
+
+
+        public ActionResult Index(int id)
+        {
+            var movies = _context.Movies.SingleOrDefault(c => c.Id == id);
+            {
+                if (movies == null)
+                    return HttpNotFound();
+                else
+                    return View(movies);
+            };
+        }
+
+
+
+
         // GET: Movies/Random
 
         public ActionResult Random()
