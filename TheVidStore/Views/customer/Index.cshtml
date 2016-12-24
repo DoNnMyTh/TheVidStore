@@ -2,23 +2,50 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+string
+<h2>Customers</h2>
 
-<h2>Index</h2>
-
-
-<table>
+<table border="1" class="table" cellspacing="1" cellpadding="2">
     <thead>
-        Customers
+        Customers Data
     </thead>
     <tbody>
-        @foreach (var customer in Model)
-       {
-         <tr>
-            <td>
-                @customer.Name
-            </td>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Id
+            </th>
+            <th>
+                Subscribed To Newsletter
+            </th>
+            <th>
+               
+                Membership Type
+            </th>
+            <th>
+                Discount rate
+            </th>
         </tr>
-       
+
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>
+                    @customer.Name
+                </td>
+                <td>
+                    @customer.Id
+                </td>
+                <td>
+                    @customer.IsSubscribedToNewsletter
+                </td>
+                <td>@customer.MembershipType.Name</td>
+                <td>@customer.MembershipType.DiscountRate%</td>
+
+            </tr>
+
         }
     </tbody>
 </table>

@@ -5,8 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using TheVidStore.Models;
 using TheVidStore.ViewModels;
+using System.Data.Entity;
 
 namespace TheVidStore.Controllers
+
 {
     public class CustomerController : Controller
     {
@@ -53,8 +55,8 @@ namespace TheVidStore.Controllers
         }
         public ViewResult Index()
         {
-            var customer = _context.Customres.ToList();
-            return View(customer);
+            var customers = _context.Customres.Include(c => c.MembershipType).ToList();
+            return View(customers);
         }
     }
 }

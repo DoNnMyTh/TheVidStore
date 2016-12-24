@@ -24,15 +24,10 @@ namespace TheVidStore.Controllers
 
 
 
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            var movies = _context.Movies.SingleOrDefault(c => c.Id == id);
-            {
-                if (movies == null)
-                    return HttpNotFound();
-                else
-                    return View(movies);
-            };
+            var movies = _context.Movies.ToList();
+            return View(movies);
         }
 
 
@@ -65,14 +60,14 @@ namespace TheVidStore.Controllers
             return Content("id=" + id);
         }
         // GET: Movies/Index/{}/{}
-        public ActionResult Index(int? pageIndex, string shortBy)
+       /* public ActionResult Index(int? pageIndex, string shortBy)
         {
             if (!pageIndex.HasValue)            
                 pageIndex = 1;            
             if (String.IsNullOrWhiteSpace(shortBy))           
                 shortBy = "Name";            
             return Content(string.Format("pageIndex={0}&shortBy={1}", pageIndex, shortBy));
-        }
+        }*/
         // GET: Movies/ByReleaseDate/{year}/{month}
         public ActionResult ByReleaseDate(int year, int month)
         {

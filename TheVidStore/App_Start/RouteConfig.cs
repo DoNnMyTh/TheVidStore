@@ -11,16 +11,16 @@ namespace TheVidStore
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+             /*routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
                 "CustomerById",
                 "Customer/Details/{Id}",
                 new { controller = "Customer", action = "ById" });
-            routes.MapRoute(
+           routes.MapRoute(
                 "MovieByReleaseDate",
                 "movies/released/{year}/{month}",
                 new { controller = "Movies", action = "ByReleaseDate" },
-                new { year = @"\d{4}", month = @"\d{2}" });
+                new { year = @"\d{4}", month = @"\d{2}" });*/
 
             routes.MapRoute(
                 name: "Default",
