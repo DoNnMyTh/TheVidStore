@@ -1,12 +1,18 @@
 ﻿@model TheVidStore.Models.Customer 
 
+
   @{
       ViewBag.Title = "Details";
       Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
     <h2>Index</h2>
-@Model.Name
+Name : @Model.Name <br />
+
+Date Of Birth : @Model.DateOfBirth <br />
+
+Is subscribes to news letter : @Model.IsSubscribedToNewsletter<br />
+@Html.ActionLink("home","Index","Customer")
 
 
    

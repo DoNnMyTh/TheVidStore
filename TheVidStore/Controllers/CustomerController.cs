@@ -18,26 +18,16 @@ namespace TheVidStore.Controllers
             _context = new ApplicationDbContext();
         }
 
+
+
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
         }
-        // GET: customer/Details
-        public ActionResult Details()
-        {
-            var customers = new List<Customer>
-            {
-                new Customer {Name = "amit" },
-                new Customer {Name = "ghanu" },
-                new Customer {Name = "ashish" },
-                new Customer {Name = "adi" }
-            };
-            var viewModel = new ByIdViewModel
-            {
-                customer = customers
-            };
-            return View(viewModel);
-        }
+
+
+        // GET: customer/Det
+
 
         public ActionResult Det(int id)
         {
@@ -49,14 +39,51 @@ namespace TheVidStore.Controllers
                     return View(customers);
             };
         }
-        public ActionResult ById(int id)
-        {
-            return Content("your id is :" + id);
-        }
+
+
+        
+
+
         public ViewResult Index()
         {
             var customers = _context.Customres.Include(c => c.MembershipType).ToList();
             return View(customers);
+        }
+        public ActionResult Edit(int Id)
+        {
+            var Customer = _context.Customres.SingleOrDefault(c => c.Id == Id);
+            if (Customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            var ViewModel = new NewCustomerViewModel
+            {
+                Customer = Customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View("CustomerForm", ViewModel);
+        }
+
+
+
+        public ActionResult New()
+        {
+            var MembershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = MembershipTypes
+            };
+            return View("CustomerFrom",viewModel);
+        }
+
+
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            _context.Customres.Add(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customers");
         }
     }
 }

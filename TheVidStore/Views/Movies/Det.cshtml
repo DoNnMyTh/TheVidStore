@@ -1,0 +1,17 @@
+﻿@model TheVidStore.Models.Movie
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+Name : @Model.Name <br />
+
+Number of Copies avilable : @Model.NumberOfMovies <br />
+
+Year Of Release : @Model.YearOfRelease<br />
+@Html.ActionLink("home", "Index", "Movies")
+
+

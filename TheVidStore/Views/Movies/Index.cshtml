@@ -6,7 +6,7 @@
 <h2>Movies</h2>
 
 
-<table border="1" class="table" cellspacing="1" cellpadding="2">
+<table class="table-hover table-bordered table-striped">
 
     <thead>Movies Data</thead>
     <tr>
@@ -17,6 +17,12 @@
         <th> Year of release</th>
 
         <th> Genre</th>
+        <th>
+            Details
+        </th>
+        <th>
+            Edit
+        </th>
     </tr>
     <tbody>
         @foreach (var movies in Model)
@@ -34,6 +40,13 @@
                 <td>
                     @movies.GenreOfMovie
                 </td>
+                <td>
+                    @Html.ActionLink("Movies", "Det", new { id = movies.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("movies", "Edit", new { id = movies.Id })
+                </td>
+               
             </tr>
 
         }
