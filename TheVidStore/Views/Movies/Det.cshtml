@@ -12,6 +12,6 @@ Name : @Model.Name <br />
 Number of Copies avilable : @Model.NumberOfMovies <br />
 
 Year Of Release : @Model.YearOfRelease<br />
-@Html.ActionLink("home", "Index", "Movies")
+<button onclick="location.href='@Url.Action("Index", "Movies")';return false;"class="btn btn-danger">Back</button>
 
 

@@ -13,10 +13,19 @@ namespace TheVidStore.Controllers
     public class CustomerController : Controller
     {
         private ApplicationDbContext _context;
+
+
+
+
+
         public CustomerController()
         {
             _context = new ApplicationDbContext();
         }
+
+
+
+
 
 
 
@@ -26,9 +35,13 @@ namespace TheVidStore.Controllers
         }
 
 
+
+
+
+
+
+
         // GET: customer/Det
-
-
         public ActionResult Det(int id)
         {
             var customers = _context.Customres.SingleOrDefault(c => c.Id == id);
@@ -41,15 +54,39 @@ namespace TheVidStore.Controllers
         }
 
 
-        
 
+
+
+
+        // GET: customer
 
         public ViewResult Index()
         {
             var customers = _context.Customres.Include(c => c.MembershipType).ToList();
             return View(customers);
         }
-        public ActionResult Edit(int Id)
+
+
+
+        public ActionResult New()
+        {
+            var MembershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = MembershipTypes
+            };
+            return View("CustomerForm" , viewModel);
+        }
+
+
+
+
+
+
+
+        // GET: customer/Edit/{Id}
+
+     public ActionResult Edit(int Id)
         {
             var Customer = _context.Customres.SingleOrDefault(c => c.Id == Id);
             if (Customer == null)
@@ -64,18 +101,11 @@ namespace TheVidStore.Controllers
             };
             return View("CustomerForm", ViewModel);
         }
+       
 
 
 
-        public ActionResult New()
-        {
-            var MembershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new NewCustomerViewModel
-            {
-                MembershipTypes = MembershipTypes
-            };
-            return View("CustomerFrom",viewModel);
-        }
+
 
 
         [HttpPost]
@@ -85,5 +115,10 @@ namespace TheVidStore.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "Customers");
         }
+
+
+
+
+
     }
 }

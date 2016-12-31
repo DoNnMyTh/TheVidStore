@@ -4,9 +4,10 @@
 }
 
 <h2>Movies</h2>
-
-
-<table class="table-hover table-bordered table-striped">
+<div class="navbar-right">
+    <button onclick="location.href='@Url.Action("NewMovie", "Movies")'" ;return false;><i class="btn btn-info">Add Movie</i></button>
+</div>
+<table class="table-hover table-bordered table-striped" >
 
     <thead>Movies Data</thead>
     <tr>
@@ -41,10 +42,10 @@
                     @movies.GenreOfMovie
                 </td>
                 <td>
-                    @Html.ActionLink("Movies", "Det", new { id = movies.Id })
+                    <button onclick="location.href='@Url.Action("Det", new { id = movies.Id })';return false;" class="btn btn-info">Details</button>
                 </td>
                 <td>
-                    @Html.ActionLink("movies", "Edit", new { id = movies.Id })
+                    <button onclick="location.href='@Url.Action("EditMovie","movies",  new { id = movies.Id })';return false;"class="btn btn-primary">Edit</button>
                 </td>
                
             </tr>

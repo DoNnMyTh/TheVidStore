@@ -82,6 +82,11 @@ namespace TheVidStore.Controllers
 
 
 
+
+
+
+
+
         // GET: Movies/Det
 
         public ActionResult Det(int id)
@@ -137,5 +142,32 @@ namespace TheVidStore.Controllers
              return Content(year + "/" + month);
          }
        */
+
+
+
+
+
+
+
+        public ActionResult NewMovie()
+        {
+            var ViewModel = new NewMovieViewModel
+            {};         
+            return View(ViewModel);
+        }
+        
+
+
+
+
+         public ActionResult EditMovie(int Id)
+          {
+              var Movie = _context.Movies.SingleOrDefault(m => m.Id == Id);
+              if (Movie == null)
+              {
+                  return HttpNotFound();
+              }
+              return View("NewMovie");
+          }
     }
 }

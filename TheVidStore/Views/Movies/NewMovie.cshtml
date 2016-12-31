@@ -1,0 +1,36 @@
+﻿@model TheVidStore.ViewModels.NewMovieViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Movie</h2>
+
+
+
+
+@using (Html.BeginForm("Create", "Movies"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Movie.Name)
+        @Html.TextBoxFor(m => m.Movie.Name, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Movie.NumberOfMovies)
+        @Html.TextBoxFor(m => m.Movie.NumberOfMovies, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Movie.YearOfRelease)
+        @Html.TextBoxFor(m => m.Movie.YearOfRelease, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Movie.GenreOfMovie)
+        @Html.TextBoxFor(m => m.Movie.GenreOfMovie, new { @class = "form-control" })
+
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+
+}

@@ -12,7 +12,9 @@ Name : @Model.Name <br />
 Date Of Birth : @Model.DateOfBirth <br />
 
 Is subscribes to news letter : @Model.IsSubscribedToNewsletter<br />
-@Html.ActionLink("home","Index","Customer")
 
+
+
+<button onclick="location.href='@Url.Action("Index", "customer")';return false;" class="btn btn-danger">Back</button>
 
    

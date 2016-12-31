@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Customers</h2>
+<div class="navbar-right">
+    <button onclick="location.href='@Url.Action("NewMovie", "Customer")'" ;return false;><i class="btn btn-info">Add Customer</i></button>
+</div>
 
 <table class="table-hover table-bordered table-striped">
     <thead>
@@ -60,10 +63,10 @@
                     @customer.DateOfBirth
                 </td>
                 <td>
-                    @Html.ActionLink("customers","Det", new { id = customer.Id })
+                    <button onclick="location.href='@Url.Action("Det", new { id = customer.Id })';return false;" class="btn btn-info">Details</button>
                 </td>
                 <td>
-                    @Html.ActionLink("customers", "Edit", new { id = customer.Id })
+                    <button onclick="location.href='@Url.Action("Edit", new { id = customer.Id })';return false;" class="btn btn-primary">Edit</button>
                 </td>
 
 
