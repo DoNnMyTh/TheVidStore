@@ -109,7 +109,7 @@ namespace TheVidStore.Controllers
 
 
 
-        [HttpPost]p
+        [HttpPost]
         public ActionResult Save(Customer customer)
         {
             if (customer.Id == 0)
