@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TheVidStore.Models;
 using TheVidStore.ViewModels;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace TheVidStore.Controllers
 
@@ -108,11 +109,24 @@ namespace TheVidStore.Controllers
 
 
 
-        [HttpPost]
-        public ActionResult Create(Customer customer)
+        [HttpPost]p
+        public ActionResult Save(Customer customer)
         {
+            if (customer.Id == 0)
+   
             _context.Customres.Add(customer);
+
+            else
+            {
+                var customerInDb = _context.Customres.Single(c => c.Id == customer.Id);
+                customerInDb.Name = customer.Name;
+                customerInDb.DateOfBirth = customer.DateOfBirth;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+
+            }
             _context.SaveChanges();
+          
             return RedirectToAction("Index", "Customers");
         }
 

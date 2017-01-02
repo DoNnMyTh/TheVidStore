@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TheVidStore.Models;
 using TheVidStore.ViewModels;
+using System.Data.Entity;
 
 namespace TheVidStore.Controllers
 {
@@ -151,23 +152,41 @@ namespace TheVidStore.Controllers
 
         public ActionResult NewMovie()
         {
-            var ViewModel = new NewMovieViewModel
-            {};         
-            return View(ViewModel);
+            return View();
         }
         
 
 
 
 
-         public ActionResult EditMovie(int Id)
+         public ActionResult EditMovie(int id)
           {
-              var Movie = _context.Movies.SingleOrDefault(m => m.Id == Id);
+              var Movie = _context.Movies.SingleOrDefault(m => m.Id == id);
               if (Movie == null)
+                
               {
                   return HttpNotFound();
               }
-              return View("NewMovie");
+            var ViewModel = new NewMovieViewModel
+            {
+                Movie = Movie
+            };
+
+            return View("NewMovie" , ViewModel);
           }
+
+
+
+
+
+
+
+        [HttpPost]
+        public ActionResult CreateMovies(Movie Movie)
+        {
+            _context.Movies.Add(Movie);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Movies");
+        }
     }
 }
