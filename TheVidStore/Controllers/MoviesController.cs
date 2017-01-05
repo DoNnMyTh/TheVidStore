@@ -154,26 +154,26 @@ namespace TheVidStore.Controllers
         {
             return View();
         }
-        
 
 
 
 
-         public ActionResult EditMovie(int id)
-          {
-              var Movie = _context.Movies.SingleOrDefault(m => m.Id == id);
-              if (Movie == null)
-                
-              {
-                  return HttpNotFound();
-              }
+
+        public ActionResult EditMovie(int id)
+        {
+            var Movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            if (Movie == null)
+
+            {
+                return HttpNotFound();
+            }
             var ViewModel = new NewMovieViewModel
             {
                 Movie = Movie
             };
 
-            return View("NewMovie" , ViewModel);
-          }
+            return View("NewMovie", ViewModel);
+        }
 
 
 
@@ -184,7 +184,19 @@ namespace TheVidStore.Controllers
         [HttpPost]
         public ActionResult CreateMovies(Movie Movie)
         {
-            _context.Movies.Add(Movie);
+            if (Movie.Id == 0)
+            {
+                _context.Movies.Add(Movie);
+            }
+            else
+            {
+                var MovieInDb = _context.Movies.Single(m => m.Id == Movie.Id);
+                MovieInDb.Name = Movie.Name;
+                MovieInDb.NumberOfMovies = Movie.NumberOfMovies;
+                MovieInDb.GenreOfMovie = Movie.GenreOfMovie;
+                MovieInDb.YearOfRelease = Movie.YearOfRelease;
+            }
+
             _context.SaveChanges();
             return RedirectToAction("Index", "Movies");
         }

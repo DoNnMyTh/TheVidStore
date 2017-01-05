@@ -202,7 +202,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
-    <Compile Include="Controllers\NewMovieViewModel.cs" />
     <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -250,6 +249,10 @@
     <Compile Include="Migrations\201612241555053_changesincustomer.cs" />
     <Compile Include="Migrations\201612241555053_changesincustomer.Designer.cs">
       <DependentUpon>201612241555053_changesincustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701030751575_abcd.cs" />
+    <Compile Include="Migrations\201701030751575_abcd.Designer.cs">
+      <DependentUpon>201701030751575_abcd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -395,6 +398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612241555053_changesincustomer.resx">
       <DependentUpon>201612241555053_changesincustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701030751575_abcd.resx">
+      <DependentUpon>201701030751575_abcd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

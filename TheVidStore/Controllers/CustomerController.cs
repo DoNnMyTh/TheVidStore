@@ -69,6 +69,10 @@ namespace TheVidStore.Controllers
 
 
 
+
+
+
+
         public ActionResult New()
         {
             var MembershipTypes = _context.MembershipTypes.ToList();
@@ -76,7 +80,7 @@ namespace TheVidStore.Controllers
             {
                 MembershipTypes = MembershipTypes
             };
-            return View("CustomerForm" , viewModel);
+            return View("CustomerForm", viewModel);
         }
 
 
@@ -87,14 +91,13 @@ namespace TheVidStore.Controllers
 
         // GET: customer/Edit/{Id}
 
-     public ActionResult Edit(int Id)
+        public ActionResult Edit(int Id)
         {
             var Customer = _context.Customres.SingleOrDefault(c => c.Id == Id);
             if (Customer == null)
             {
                 return HttpNotFound();
             }
-
             var ViewModel = new NewCustomerViewModel
             {
                 Customer = Customer,
@@ -102,7 +105,7 @@ namespace TheVidStore.Controllers
             };
             return View("CustomerForm", ViewModel);
         }
-       
+
 
 
 
@@ -113,21 +116,29 @@ namespace TheVidStore.Controllers
         public ActionResult Save(Customer customer)
         {
             if (customer.Id == 0)
-   
-            _context.Customres.Add(customer);
+            {
+                _context.Customres.Add(customer);
+            }
 
             else
             {
                 var customerInDb = _context.Customres.Single(c => c.Id == customer.Id);
                 customerInDb.Name = customer.Name;
                 customerInDb.DateOfBirth = customer.DateOfBirth;
+                customerInDb.MembershipType = customer.MembershipType;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
-
             }
-            _context.SaveChanges();
-          
-            return RedirectToAction("Index", "Customers");
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Console.WriteLine(ex); 
+            }
+            
+            return RedirectToAction("Index", "Customer");
         }
 
 
