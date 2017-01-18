@@ -13,8 +13,9 @@ namespace TheVidStore.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
-
-        public string DateOfBirth { get; set; }
+        [Display(Name ="Date Of Birth")]
+        [DataType(DataType.Date)]
+        public DateTime? Birthdate { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }
         [Display(Name = "Membership type")]
@@ -22,6 +23,5 @@ namespace TheVidStore.Models
 
    
         public byte MembershipTypeId { get; set; }
-
     }
 }

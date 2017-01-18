@@ -115,6 +115,16 @@ namespace TheVidStore.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            if (    !ModelState.IsValid)
+            {
+                var ViewModel = new NewCustomerViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", ViewModel);
+            }
+
             if (customer.Id == 0)
             {
                 _context.Customres.Add(customer);
@@ -124,7 +134,7 @@ namespace TheVidStore.Controllers
             {
                 var customerInDb = _context.Customres.Single(c => c.Id == customer.Id);
                 customerInDb.Name = customer.Name;
-                customerInDb.DateOfBirth = customer.DateOfBirth;
+                customerInDb.Birthdate = customer.Birthdate;
                 customerInDb.MembershipType = customer.MembershipType;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;

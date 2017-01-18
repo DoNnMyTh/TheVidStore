@@ -24,15 +24,16 @@
                 Subscribed To Newsletter
             </th>
             <th>
-               
+
                 Membership Type
             </th>
             <th>
                 Discount rate
             </th>
             <th>
-                Date Of Birth
+                Year Of Birth
             </th>
+
             <th>
                 Details
             </th>
@@ -59,8 +60,12 @@
                 <td>
                     @customer.MembershipType.DiscountRate%
                 </td>
+
                 <td>
-                    @customer.DateOfBirth
+                    @{
+                        var Birthdate = customer.Birthdate.Year;
+                     }
+                    @Birthdate
                 </td>
                 <td>
                     <button onclick="location.href='@Url.Action("Det", new { id = customer.Id })';return false;" class="btn btn-info">Details</button>
@@ -68,9 +73,7 @@
                 <td>
                     <button onclick="location.href='@Url.Action("Edit", new { id = customer.Id })';return false;" class="btn btn-primary">Edit</button>
                 </td>
-
-
-            </tr>
+             </tr>
 
         }
     </tbody>

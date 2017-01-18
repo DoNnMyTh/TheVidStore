@@ -254,6 +254,18 @@
     <Compile Include="Migrations\201701030751575_abcd.Designer.cs">
       <DependentUpon>201701030751575_abcd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701060620273_ChangedBirthdayToDate.cs" />
+    <Compile Include="Migrations\201701060620273_ChangedBirthdayToDate.Designer.cs">
+      <DependentUpon>201701060620273_ChangedBirthdayToDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701061508052_addedbirthdateAsDateTime.cs" />
+    <Compile Include="Migrations\201701061508052_addedbirthdateAsDateTime.Designer.cs">
+      <DependentUpon>201701061508052_addedbirthdateAsDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701091810097_ChangedDateTime.cs" />
+    <Compile Include="Migrations\201701091810097_ChangedDateTime.Designer.cs">
+      <DependentUpon>201701091810097_ChangedDateTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -401,6 +413,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701030751575_abcd.resx">
       <DependentUpon>201701030751575_abcd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701060620273_ChangedBirthdayToDate.resx">
+      <DependentUpon>201701060620273_ChangedBirthdayToDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701061508052_addedbirthdateAsDateTime.resx">
+      <DependentUpon>201701061508052_addedbirthdateAsDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701091810097_ChangedDateTime.resx">
+      <DependentUpon>201701091810097_ChangedDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

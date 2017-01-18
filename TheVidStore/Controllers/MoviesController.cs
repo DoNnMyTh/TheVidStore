@@ -184,6 +184,15 @@ namespace TheVidStore.Controllers
         [HttpPost]
         public ActionResult CreateMovies(Movie Movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var ViewModel = new NewMovieViewModel
+                {
+                    Movie = Movie
+                };
+                return View("NewMovie", ViewModel);
+            }
+
             if (Movie.Id == 0)
             {
                 _context.Movies.Add(Movie);
