@@ -12,8 +12,9 @@ namespace TheVidStore.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+        [Range(0 , 20)]
         public int NumberOfMovies { get; set; }
-        public int YearOfRelease { get; set; }
+        public DateTime? Year { get; set; }
         public string GenreOfMovie { get; set; }
 
     }

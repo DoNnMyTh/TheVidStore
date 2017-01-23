@@ -9,10 +9,6 @@
 <h3>Movies</h3>
 <br />
 
-@{
-    var className = Model.Count > 5 ? "popular" : null;
-}
-
 <h4 class="@className">
     @foreach (var Movies in Model.Movie)
     {

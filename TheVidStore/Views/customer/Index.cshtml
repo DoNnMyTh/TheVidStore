@@ -65,7 +65,9 @@
                     @{
                         var Birthdate = customer.Birthdate.Year;
                      }
+
                     @Birthdate
+
                 </td>
                 <td>
                     <button onclick="location.href='@Url.Action("Det", new { id = customer.Id })';return false;" class="btn btn-info">Details</button>

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TheVidStore.Models;
 using TheVidStore.ViewModels;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace TheVidStore.Controllers
 {
@@ -59,30 +60,6 @@ namespace TheVidStore.Controllers
 
 
 
-        // GET: Movies/Random
-
-        public ActionResult Random()
-        {
-            //var movie = new Movie() { Name = "shrek!" };
-            var movie = new List<Movie>
-            {
-                new Movie {Name = "The Green Mile" },
-                new Movie {Name = "The Mask" },
-                new Movie {Name = "Die Hard" },
-                new Movie {Name = "Iron Man" },
-                new Movie {Name = "captain America" },
-                new Movie {Name = "Thor" },
-                new Movie {Name = "Guardians Of Galaxy" }
-            };
-            var viewModel = new RandomMovieViewModel
-            {
-                Movie = movie
-            };
-            return View(viewModel);
-        }
-
-
-
 
 
 
@@ -122,10 +99,10 @@ namespace TheVidStore.Controllers
         // GET: Movies/Index/{}/{}
         /* public ActionResult Index(int? pageIndex, string shortBy)
          {
-             if (!pageIndex.HasValue)            
-                 pageIndex = 1;            
-             if (String.IsNullOrWhiteSpace(shortBy))           
-                 shortBy = "Name";            
+             if (!pageIndex.HasValue)
+                 pageIndex = 1;
+             if (String.IsNullOrWhiteSpace(shortBy))
+                 shortBy = "Name";
              return Content(string.Format("pageIndex={0}&shortBy={1}", pageIndex, shortBy));
          }*/
 
@@ -152,7 +129,11 @@ namespace TheVidStore.Controllers
 
         public ActionResult NewMovie()
         {
-            return View();
+            var ViewModel = new NewMovieViewModel
+            {
+                Movie = new Movie()
+            };
+            return View("NewMovie",ViewModel);
         }
 
 
@@ -182,32 +163,36 @@ namespace TheVidStore.Controllers
 
 
         [HttpPost]
-        public ActionResult CreateMovies(Movie Movie)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateMovies(Movie movie)
         {
             if (!ModelState.IsValid)
             {
                 var ViewModel = new NewMovieViewModel
                 {
-                    Movie = Movie
+                    Movie = movie
                 };
                 return View("NewMovie", ViewModel);
             }
 
-            if (Movie.Id == 0)
+            if (movie.Id == 0)
             {
-                _context.Movies.Add(Movie);
+                _context.Movies.Add(movie);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Movies");
             }
             else
             {
-                var MovieInDb = _context.Movies.Single(m => m.Id == Movie.Id);
-                MovieInDb.Name = Movie.Name;
-                MovieInDb.NumberOfMovies = Movie.NumberOfMovies;
-                MovieInDb.GenreOfMovie = Movie.GenreOfMovie;
-                MovieInDb.YearOfRelease = Movie.YearOfRelease;
+                var MovieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+                MovieInDb.Name = movie.Name;
+                MovieInDb.NumberOfMovies = movie.NumberOfMovies;
+                MovieInDb.GenreOfMovie = movie.GenreOfMovie;
+                MovieInDb.Year = movie.Year;
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Movies");
             }
 
-            _context.SaveChanges();
-            return RedirectToAction("Index", "Movies");
+
         }
     }
 }

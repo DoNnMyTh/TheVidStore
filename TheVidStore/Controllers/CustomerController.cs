@@ -42,7 +42,7 @@ namespace TheVidStore.Controllers
 
 
 
-        // GET: customer/Det
+        // GET: customer/Det/{Id}
         public ActionResult Det(int id)
         {
             var customers = _context.Customres.SingleOrDefault(c => c.Id == id);
@@ -78,6 +78,7 @@ namespace TheVidStore.Controllers
             var MembershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new NewCustomerViewModel
             {
+                Customer = new Customer(),
                 MembershipTypes = MembershipTypes
             };
             return View("CustomerForm", viewModel);
@@ -113,6 +114,7 @@ namespace TheVidStore.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             if (    !ModelState.IsValid)
@@ -145,9 +147,9 @@ namespace TheVidStore.Controllers
             }
             catch (DbEntityValidationException ex)
             {
-                Console.WriteLine(ex); 
+                Console.WriteLine(ex);
             }
-            
+
             return RedirectToAction("Index", "Customer");
         }
 

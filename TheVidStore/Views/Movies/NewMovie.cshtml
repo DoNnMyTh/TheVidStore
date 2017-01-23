@@ -20,11 +20,12 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.NumberOfMovies)
         @Html.TextBoxFor(m => m.Movie.NumberOfMovies, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.NumberOfMovies)
 
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Movie.YearOfRelease)
-        @Html.TextBoxFor(m => m.Movie.YearOfRelease, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Movie.Year)
+        @Html.TextBoxFor(m => m.Movie.Year, new { @class = "form-control" })
 
     </div>
     <div class="form-group">
@@ -33,6 +34,12 @@
 
     </div>
     @Html.HiddenFor(m => m.Movie.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 
+}
+@section scripts
+
+    {
+    @Scripts.Render("~/bundles/jqueryval")
 }

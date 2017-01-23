@@ -1,4 +1,4 @@
-﻿@model TheVidStore.Models.Customer 
+﻿@model TheVidStore.Models.Customer
 
 
   @{
@@ -9,7 +9,7 @@
     <h2>Index</h2>
 Name : @Model.Name <br />
 
-Date Of Birth : @Model.DateOfBirth <br />
+Year Of Birth : @Model.Birthdate.Value.Year <br />
 
 Is subscribes to news letter : @Model.IsSubscribedToNewsletter<br />
 
@@ -17,4 +17,3 @@ Is subscribes to news letter : @Model.IsSubscribedToNewsletter<br />
 
 <button onclick="location.href='@Url.Action("Index", "customer")';return false;" class="btn btn-danger">Back</button>
 
-   
