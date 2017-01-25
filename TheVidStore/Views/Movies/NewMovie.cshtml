@@ -26,11 +26,13 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.Year)
         @Html.TextBoxFor(m => m.Movie.Year, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.Year)
 
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.GenreOfMovie)
         @Html.TextBoxFor(m => m.Movie.GenreOfMovie, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.GenreOfMovie)
 
     </div>
     @Html.HiddenFor(m => m.Movie.Id)
@@ -39,7 +41,6 @@
 
 }
 @section scripts
-
     {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+     @Scripts.Render("~/bundles/jqueryval")
+    }
