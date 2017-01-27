@@ -30,8 +30,11 @@ namespace TheVidStore
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-Cosmos.css",
+                      "~/Content/bootstrap-cosmos.css",
+                      "~/Content/bootstrap-theme.css",
                       "~/content/datatables/css/datatables.bootstrap.css",
+                      "~/content/typeahead.css",
+                      "~/content/toastr.css",
                       "~/Content/site.css"));
 
         }
