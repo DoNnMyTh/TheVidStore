@@ -301,6 +301,14 @@
     <Compile Include="Migrations\201701220458543_shithappend.Designer.cs">
       <DependentUpon>201701220458543_shithappend.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701271531084_seedUsers.cs" />
+    <Compile Include="Migrations\201701271531084_seedUsers.Designer.cs">
+      <DependentUpon>201701271531084_seedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701271730409_AddedUidToApplicationUser.cs" />
+    <Compile Include="Migrations\201701271730409_AddedUidToApplicationUser.Designer.cs">
+      <DependentUpon>201701271730409_AddedUidToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -309,6 +317,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ByIdViewModel.cs" />
@@ -624,10 +633,11 @@
     <Content Include="Views\Movies\Random.cshtml" />
     <Content Include="Views\customer\Index.cshtml" />
     <Content Include="Views\customer\Det.cshtml" />
-    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\List.cshtml" />
     <Content Include="Views\Movies\Det.cshtml" />
     <Content Include="Views\Movies\NewMovie.cshtml" />
     <Content Include="Views\customer\CustomerForm.cshtml" />
+    <Content Include="Views\Movies\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -695,6 +705,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701220458543_shithappend.resx">
       <DependentUpon>201701220458543_shithappend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701271531084_seedUsers.resx">
+      <DependentUpon>201701271531084_seedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701271730409_AddedUidToApplicationUser.resx">
+      <DependentUpon>201701271730409_AddedUidToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

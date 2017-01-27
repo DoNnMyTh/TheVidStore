@@ -37,6 +37,7 @@ namespace TheVidStore.Controllers.Api
         }
 
         //POST: /api/movies
+        [Authorize(Roles = RoleName.CanManageMovie)]
         [HttpPost]
         public IHttpActionResult CreateMovie(MovieDto movieDto)
         {
@@ -50,6 +51,7 @@ namespace TheVidStore.Controllers.Api
         }
 
         //PUT: /api/movies/1
+        [Authorize(Roles = RoleName.CanManageMovie)]
         [HttpPut]
         public void UpdateMovie(int id,MovieDto movieDto)
         {
@@ -62,6 +64,7 @@ namespace TheVidStore.Controllers.Api
             _context.SaveChanges();
         }
         //Delete: /api/movies/1
+        [Authorize(Roles = RoleName.CanManageMovie)]
         [HttpDelete]
         public void Deletemovie(int id)
         {

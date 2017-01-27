@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace TheVidStore.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()

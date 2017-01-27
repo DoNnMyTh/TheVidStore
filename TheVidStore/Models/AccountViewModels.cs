@@ -65,6 +65,9 @@ namespace TheVidStore.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Aadhar(Uid) Number")]
+        public string UidNumber { get; set; }
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

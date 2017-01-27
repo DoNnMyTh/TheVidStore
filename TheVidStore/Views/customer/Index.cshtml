@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Customer Information";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -28,38 +27,35 @@
     <tbody></tbody>
 </table>
 
-
 @section scripts{
     <script>
         $(document).ready(function () {
 
-
-       var table =     $("#customers1").DataTable({
+            var table = $("#customers1").DataTable({
                 ajax: {
                     url: "/api/customers",
                     dataSrc: ""
                 },
-                columns:[
+                columns: [
                     {
                         data: "name",
-                        render: function(data, type , customer){
+                        render: function (data, type, customer) {
                             return "<a href='/customer/edit/" + customer.id + "'>" + customer.name + "</a>";
                         }
                     },
                     {
-                        data:"membershipType.name"
+                        data: "membershipType.name"
                     },
                     {
-                        data:"id",
-                        render: function(data){
+                        data: "id",
+                        render: function (data) {
                             return "<button class='btn btn-danger js-delete' data-customer-id=" + data + ">Delete</button>";
                         }
                     }
 
+                ]
 
-        ]
-
-        });
+            });
 
             $("#customers1").on("click", ".js-delete", function () {
                 var button = $(this);
@@ -71,7 +67,7 @@
                                     url: "/api/customers/" + button.attr("data-customer-id"),
                                     method: "DELETE",
                                     success: function () {
-                                     table.row(button.parents("tr")).remove().draw();
+                                        table.row(button.parents("tr")).remove().draw();
                                     }
                                 }
                 );

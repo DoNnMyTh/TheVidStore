@@ -50,7 +50,10 @@ namespace TheVidStore.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            if (User.IsInRole(RoleName.CanManageMovie))
+                return View("List");
+            else
+            return View("ReadOnlyList");
         }
 
 
@@ -125,6 +128,7 @@ namespace TheVidStore.Controllers
 
 
 
+            [Authorize(Roles = RoleName.CanManageMovie)]
 
         public ActionResult NewMovie()
         {
@@ -138,6 +142,7 @@ namespace TheVidStore.Controllers
 
 
 
+        [Authorize(Roles = RoleName.CanManageMovie)]
 
         public ActionResult EditMovie(int id)
         {
@@ -161,6 +166,7 @@ namespace TheVidStore.Controllers
 
 
 
+        [Authorize(Roles = RoleName.CanManageMovie)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateMovies(Movie movie)
