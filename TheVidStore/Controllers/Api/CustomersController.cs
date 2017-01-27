@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Net;
 using System.Net.Http;
-using System.Data.Entity;
 using System.Web.Http;
 using TheVidStore.Models;
 using AutoMapper;
@@ -27,10 +27,7 @@ namespace TheVidStore.Controllers.Api
         //GET: /api/customers
         public IHttpActionResult GetCustomers()
         {
-            var customerDtos =  _context.Customres
-                .Include(c => c.MembershipType)
-                .ToList()
-                .Select(Mapper.Map<Customer, CustomerDto>);
+            var customerDtos = _context.Customres.Include(c => c.MembershipType).ToList().Select(Mapper.Map<Customer, CustomerDto>);
             return Ok(customerDtos);
         }
 
