@@ -16,21 +16,8 @@
                 Name
             </th>
             <th>
-                Subscribed To Newsletter
-            </th>
-            <th>
 
                 Membership Type
-            </th>
-            <th>
-                Discount rate
-            </th>
-
-            <th>
-                Details
-            </th>
-            <th>
-                Edit
             </th>
             <th>
                 Delete
@@ -38,36 +25,7 @@
         </tr>
     </thead>
 
-    <tbody>
-
-        @foreach (var customer in Model)
-        {
-            <tr>
-                <td>
-                    @customer.Name
-                </td>
-                <td>
-                    @customer.IsSubscribedToNewsletter
-                </td>
-                <td>
-                    @customer.MembershipType.Name
-                </td>
-                <td>
-                    @customer.MembershipType.DiscountRate%
-                </td>
-                <td>
-                    <button onclick="location.href='@Url.Action("Det", new { id = customer.Id })';return false;" class="btn btn-info">Details</button>
-                </td>
-                <td>
-                    <button onclick="location.href='@Url.Action("Edit", new { id = customer.Id })';return false;" class="btn btn-primary">Edit</button>
-                </td>
-                <td>
-                    <button data-customer-id="@customer.Id" class="btn btn-danger js-delete">Delete</button>
-                </td>
-            </tr>
-
-        }
-    </tbody>
+    <tbody></tbody>
 </table>
 
 
@@ -76,7 +34,32 @@
         $(document).ready(function () {
 
 
-$("#customers1").DataTable();
+            $("#customers1").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns:[
+                    {
+                        data: "name",
+                        render: function(data, type , customer){
+                            return "<a href='/customer/edit/" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data:"membershipType.name"
+                    },
+                    {
+                        data:"id",
+                        render: function(data){
+                            return "<button class='btn btn-danger js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+
+
+        ]
+
+        });
 
         });
 
