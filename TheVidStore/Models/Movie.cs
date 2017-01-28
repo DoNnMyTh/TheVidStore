@@ -16,6 +16,7 @@ namespace TheVidStore.Models
         public int NumberOfMovies { get; set; }
         public DateTime? Year { get; set; }
         public string GenreOfMovie { get; set; }
+        public byte NumberAvailable { get; set; }
 
     }
 }

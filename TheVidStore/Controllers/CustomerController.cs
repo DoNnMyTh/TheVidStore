@@ -45,7 +45,7 @@ namespace TheVidStore.Controllers
         // GET: customer/Det/{Id}
         public ActionResult Det(int id)
         {
-            var customers = _context.Customres.SingleOrDefault(c => c.Id == id);
+            var customers = _context.Customers.SingleOrDefault(c => c.Id == id);
             {
                 if (customers == null)
                     return HttpNotFound();
@@ -93,7 +93,7 @@ namespace TheVidStore.Controllers
 
         public ActionResult Edit(int Id)
         {
-            var Customer = _context.Customres.SingleOrDefault(c => c.Id == Id);
+            var Customer = _context.Customers.SingleOrDefault(c => c.Id == Id);
             if (Customer == null)
             {
                 return HttpNotFound();
@@ -128,12 +128,12 @@ namespace TheVidStore.Controllers
 
             if (customer.Id == 0)
             {
-                _context.Customres.Add(customer);
+                _context.Customers.Add(customer);
             }
 
             else
             {
-                var customerInDb = _context.Customres.Single(c => c.Id == customer.Id);
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
                 customerInDb.Name = customer.Name;
                 customerInDb.Birthdate = customer.Birthdate;
                 customerInDb.MembershipType = customer.MembershipType;

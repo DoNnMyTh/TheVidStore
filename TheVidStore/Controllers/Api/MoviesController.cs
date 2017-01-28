@@ -22,9 +22,17 @@ namespace TheVidStore.Controllers.Api
 
 
         //GET: /api/movies
-        public IEnumerable<MovieDto> GetMovies()
+        public IHttpActionResult GetMovies(string query = null)
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            var moviesQuery = _context.Movies.Where(m => m.NumberAvailable >0);
+
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+            }
+            var moviesDtos = moviesQuery
+            .ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return Ok(moviesDtos);
         }
 
         //GET: /api/movies/1
@@ -44,7 +52,7 @@ namespace TheVidStore.Controllers.Api
             if (!ModelState.IsValid)
                 BadRequest();
             var movie = Mapper.Map<MovieDto, Customer>(movieDto);
-            _context.Customres.Add(movie);
+            _context.Customers.Add(movie);
             _context.SaveChanges();
             movieDto.Id = movie.Id;
             return Created(new Uri(Request.RequestUri + "/" + movie.Id), movieDto);

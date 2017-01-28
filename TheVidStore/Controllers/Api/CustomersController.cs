@@ -25,16 +25,24 @@ namespace TheVidStore.Controllers.Api
 
 
         //GET: /api/customers
-        public IHttpActionResult GetCustomers()
+        public IHttpActionResult GetCustomers(string query = null)
         {
-            var customerDtos = _context.Customres.Include(c => c.MembershipType).ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            var customesrQuery = _context.Customers.Include(c => c.MembershipType);
+
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                customesrQuery = customesrQuery.Where(c => c.Name.Contains(query));
+            }
+
+            var customerDtos = customesrQuery
+            .ToList().Select(Mapper.Map<Customer, CustomerDto>);
             return Ok(customerDtos);
         }
 
         //GET: /api/customers/1
         public CustomerDto GetCustomer(int id)
         {
-            var customer = _context.Customres.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customer == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             return Mapper.Map<Customer, CustomerDto>(customer);
@@ -47,7 +55,7 @@ namespace TheVidStore.Controllers.Api
             if (!ModelState.IsValid)
                 BadRequest();
             var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
-            _context.Customres.Add(customer);
+            _context.Customers.Add(customer);
             _context.SaveChanges();
             customerDto.Id = customer.Id;
             return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
@@ -59,7 +67,7 @@ namespace TheVidStore.Controllers.Api
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var customerInDb = _context.Customres.SingleOrDefault(c => c.Id == id);
+            var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customerInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             Mapper.Map(customerDto, customerInDb);
@@ -69,11 +77,11 @@ namespace TheVidStore.Controllers.Api
         [HttpDelete]
         public void DeleteCustomer(int id)
         {
-            var customerInDb = _context.Customres.SingleOrDefault(c => c.Id == id);
+            var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customerInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            _context.Customres.Remove(customerInDb);
+            _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
 
         }
