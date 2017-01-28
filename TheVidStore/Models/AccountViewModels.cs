@@ -8,6 +8,9 @@ namespace TheVidStore.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Required]
+        [Display(Name = "Aadhar(Unique id) Number")]
+        public string UidNumber { get; set; }
     }
 
     public class ExternalLoginListViewModel

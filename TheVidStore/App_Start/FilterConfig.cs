@@ -9,6 +9,7 @@ namespace TheVidStore
         {
             filters.Add(new ErrorHandler.AiHandleErrorAttribute());
             filters.Add(new AuthorizeAttribute());
+            filters.Add(new RequireHttpsAttribute());
         }
     }
 }
