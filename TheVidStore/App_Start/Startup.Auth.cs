@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using TheVidStore.Models;
+using System.Configuration;
 
 namespace TheVidStore
 {
@@ -47,22 +48,22 @@ namespace TheVidStore
 
             // Uncomment the following lines to enable logging in with third party login providers
             app.UseMicrosoftAccountAuthentication(
-               clientId: "5f5b5bd9-f88a-4ad4-ba1a-c7b7d6214538",
-                clientSecret: "aOmAstd9Kgf7USyT8kgMXMD");
+               clientId: ConfigurationManager.AppSettings["Microsoftid"],
+                clientSecret: ConfigurationManager.AppSettings["Microsoftkey"]);
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-              appId: "577460095776908",
-               appSecret: "abb57b3584ee9f9c07d9a49358d3bfaa");
+              appId: ConfigurationManager.AppSettings["Facebookid"],
+               appSecret: ConfigurationManager.AppSettings["Facebookkey"]);
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "485804783617-fh2gr6ju7qjp6hoe2bq7489gf7db81dp.apps.googleusercontent.com",
-              ClientSecret = "OixXNJJmYWRjXEy3B6-vgYQu"
-            });
+                ClientId = ConfigurationManager.AppSettings["Googleid"],
+              ClientSecret = ConfigurationManager.AppSettings["Googlekey"]
+                });
         }
     }
 }
